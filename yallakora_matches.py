@@ -6,7 +6,7 @@ date = input("please enter a date: MM/DD/YY")
 page = requests.get(f"https://www.yallakora.com/match-center?date={date}")
 
 def main(page):
-
+    
     src = page.content
     soup = BeautifulSoup(src, "lxml") #lxml parser
     matches_details = []
@@ -28,13 +28,12 @@ def main(page):
             match_time = matches[i].find('div', {'class' : 'MResult'}).find('span', {'class' : 'time'}).text.strip()
             #add match info to matches_details
             matches_details.append({"نوع البطولة":championship_title, "الفريق الأول":team_A, "الفريق الثاني":team_B,"ميعاد المباراة":match_time,"النتيجة":score})
+            
     for i in range(len(championships)):
         get_match_info(championships[i])
-    #print(matches_details)
 
     keys = matches_details[0].keys()
-
-    with open('matches_details.csv', 'w', encoding="utf8") as output_file:
+    with open('matches.csv', 'w', encoding="utf8") as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(matches_details)
