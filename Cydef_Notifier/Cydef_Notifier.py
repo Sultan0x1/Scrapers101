@@ -34,7 +34,7 @@ def main():
 
 		#read the saved score
 		with open('score.txt', 'r') as value:
-				saved_data = value.readlines()
+			saved_data = value.readlines()
 			
 		#compare the two scores if change found update the file
 		if online_points != saved_data[0].strip():
