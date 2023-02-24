@@ -1,2 +1,1 @@
-# yallakora_matches
-Yallakora scrapper
+Creating dummy scrapers for educational purposes
